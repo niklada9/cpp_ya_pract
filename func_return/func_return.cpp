@@ -36,8 +36,7 @@ int main()
     string query;
     getline(cin, query);
     SplitIntoWords(query);
-    //cout << c << endl;
-    
+       
 }
 
 
