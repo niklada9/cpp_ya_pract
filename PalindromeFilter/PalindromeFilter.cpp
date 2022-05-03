@@ -26,8 +26,7 @@ vector<string> PalindromeFilter(vector<string> words, int min_length) {
         word = words[i];
             if (IsPalindrome(word) && (word.size() >= min_length)) {
             nwords.push_back(word);
-            cout << word << endl;
-                    }
+                     }
             }// Returns from words all palindrome strings with length at least min_length
     return nwords;   
 }
@@ -36,10 +35,8 @@ vector<string> PalindromeFilter(vector<string> words, int min_length) {
 
 int main()
 {
-    int min_length = 5;
-    int i;
-    vector <string> words = {"rotor"s, "anna"s, "kayak"s};
-    string word;
+    int min_length = 0;
+    vector <string> words = {"racecar"s, "rr"s, "code"s};
     PalindromeFilter(words, min_length);
 }
 
