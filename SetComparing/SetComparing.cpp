@@ -8,53 +8,63 @@
 
 using namespace std;
 
-int CalculateSimilarity(vector<string> first, vector<string> second) {
-    int n = 0;
-    
-    set<string> firstline(first.begin(), first.end());
-    set<string> secondline(second.begin(), second.end());
+set<string> VectorToString(vector<string> text) {
+	int j;
+	set<string> set;
+	for (j = 0; j < text.size(); ++j) {
+		set.insert(text[j]);
+	}
+	return set;
+}
 
-    for (int i = 0; i < firstline.size(); ++i) {
-        if (secondline.count(first[i]) > 0) {
-            // есть совпадение
-            n++;
-        }
-   }
-    // верните размер пересечения множеств слов first и second
-   
-    return n;
+int CalculateSimilarity(vector<string> first, vector<string> second) {
+	int n = 0;
+	set<string> firstline = VectorToString(first);
+	set<string> secondline = VectorToString(second);
+
+	//set<string> firstline(first.begin(), first.end());
+	//set<string> secondline(second.begin(), second.end());
+
+	for (string word : firstline) {
+		if (secondline.count(word) > 0) {
+			// есть совпадение
+			n++;
+		}
+	}
+	// верните размер пересечения множеств слов first и second
+	return n;
 }
 
 // SplitIntoWords разбивает строку text на слова и возвращает их в виде вектора
 // Слово - последовательность непробельных символов,
 // разделённых одним или более пробелов.
 vector<string> SplitIntoWords(string text) {
-    vector<string> words;
-    string word;
-    for (const char c : text) {
-        if (c == ' ') {
-            if (!word.empty()) {
-                words.push_back(word);
-                word.clear();
-            }
-        }
-        else {
-            word += c;
-        }
-    }
-    if (!word.empty()) {
-        words.push_back(word);
-    }
-    return words;
+	vector<string> words;
+	string word;
+	for (const char c : text) {
+		if (c == ' ') {
+			if (!word.empty()) {
+				words.push_back(word);
+				word.clear();
+			}
+		}
+		else {
+			word += c;
+		}
+	}
+	if (!word.empty()) {
+		words.push_back(word);
+	}
+	return words;
 }
 
 int main() {
-    string query, description;
+	string query, description;
 
-    getline(cin, query);
-    getline(cin, description);
+	getline(cin, query);
+	getline(cin, description);
 
-    cout << CalculateSimilarity(SplitIntoWords(query), SplitIntoWords(description)) << endl;
+	cout << CalculateSimilarity(SplitIntoWords(query), SplitIntoWords(description)) << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
