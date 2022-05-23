@@ -4,6 +4,12 @@
 
 using namespace std;
 
+string ReadSearchQuery() {
+    string query;
+    getline(cin, query);
+    //query = "test search query"s;    
+    return query;
+}
 
 vector<string> SplitIntoWords(const string& text) {
     vector<string> words;
@@ -27,7 +33,8 @@ vector<string> SplitIntoWords(const string& text) {
 }
 
 int main() {
-    string line = "test search query"s;
+    //string line = "test search query"s;
+    string line = ReadSearchQuery();
     vector<string> lines = SplitIntoWords(line);
     for (const string& s : lines) {
         cout << "["s << s << "] "s;
